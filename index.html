@@ -1,0 +1,1714 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Промышленный центр управления</title>
+
+    <link
+        rel="stylesheet"
+        href="./style.css"
+    >
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
+        }
+    }
+    </script>
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+    <!-- =========================
+         БОКОВОЕ МЕНЮ
+    ========================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                IC
+            </div>
+
+            <div class="brand-text">
+
+                <strong>
+                    ПРОМЫШЛЕННЫЙ
+                </strong>
+
+                <span>
+                    ЦЕНТР УПРАВЛЕНИЯ
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="navigation">
+
+            <button
+                class="nav-item active"
+                data-section="overview"
+            >
+                <span class="nav-icon">◆</span>
+                <span>Обзор</span>
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-section="equipment"
+            >
+                <span class="nav-icon">●</span>
+                <span>Оборудование</span>
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-section="sensors"
+            >
+                <span class="nav-icon">◇</span>
+                <span>Датчики</span>
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-section="production"
+            >
+                <span class="nav-icon">▣</span>
+                <span>Производство</span>
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-section="analytics"
+            >
+                <span class="nav-icon">▤</span>
+                <span>Аналитика</span>
+            </button>
+
+        </nav>
+
+
+        <div class="system-status">
+
+            <div class="status-dot"></div>
+
+            <div>
+
+                <span class="status-label">
+                    СОСТОЯНИЕ СИСТЕМЫ
+                </span>
+
+                <strong>
+                    Операционная
+                </strong>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =========================
+         ОСНОВНАЯ ОБЛАСТЬ
+    ========================== -->
+
+    <main class="main-content">
+
+
+        <!-- =========================
+             ВЕРХНЯЯ ПАНЕЛЬ
+        ========================== -->
+
+        <header class="topbar">
+
+            <div>
+
+                <div class="eyebrow">
+                    МОНИТОРИНГ ПРОИЗВОДСТВА
+                </div>
+
+                <h1 id="page-title">
+                    Обзор производства
+                </h1>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <div class="live-status">
+
+                    <span class="live-dot"></span>
+
+                    ДАННЫЕ В РЕАЛЬНОМ ВРЕМЕНИ
+
+                </div>
+
+
+                <div class="date">
+                    24 СЕН 2026
+                </div>
+
+
+                <div class="user-avatar">
+                    A
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =====================================================
+             РАЗДЕЛ: ОБЗОР
+        ====================================================== -->
+
+        <section
+            id="section-overview"
+            class="content-section active"
+        >
+
+
+            <!-- 3D DIGITAL TWIN -->
+
+            <section class="dashboard-card">
+
+                <div class="dashboard-header">
+
+                    <div>
+
+                        <div class="small-label">
+                            ЦИФРОВОЙ ДВОЙНИК
+                        </div>
+
+                        <h2>
+                            Производственный объект
+                        </h2>
+
+                    </div>
+
+
+                    <button
+                        id="reset-view"
+                        class="reset-button"
+                    >
+                        СБРОСИТЬ ВИД
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="scene-container"
+                    class="scene-container"
+                >
+
+                    <div
+                        id="loading-screen"
+                        class="loading-screen"
+                    >
+                        ИНИЦИАЛИЗАЦИЯ 3D-СРЕДЫ...
+                    </div>
+
+                </div>
+
+
+                <div class="scene-footer">
+
+                    <span>
+                        ● ИНТЕРАКТИВНАЯ 3D-МОДЕЛЬ
+                    </span>
+
+                    <span>
+                        ПЕРЕТАСКИВАЙТЕ ДЛЯ ПОВОРОТА
+                    </span>
+
+                    <span>
+                        КОЛЕСО ДЛЯ МАСШТАБИРОВАНИЯ
+                    </span>
+
+                </div>
+
+            </section>
+
+
+
+          <!-- =====================================================
+     РАЗДЕЛ: АНАЛИТИКА
+====================================================== -->
+
+<section
+    id="section-analytics"
+    class="content-section"
+>
+
+    <div class="section-header">
+
+        <div>
+            <h2>
+                Аналитика
+            </h2>
+
+            <p>
+                Анализ состояния производственного оборудования
+            </p>
+        </div>
+
+        <div class="sensor-status-summary">
+
+            <span class="status-dot green"></span>
+
+            Данные в реальном времени
+
+        </div>
+
+    </div>
+
+
+    <!-- СВОДНЫЕ ПОКАЗАТЕЛИ -->
+
+    <div class="analytics-summary">
+
+        <div class="analytics-summary-card">
+
+            <span>
+                Средняя температура
+            </span>
+
+            <strong id="analytics-average-temperature">
+                72 °C
+            </strong>
+
+            <small>
+                текущее значение
+            </small>
+
+        </div>
+
+
+        <div class="analytics-summary-card">
+
+            <span>
+                Средняя нагрузка
+            </span>
+
+            <strong id="analytics-average-load">
+                64 %
+            </strong>
+
+            <small>
+                производственная нагрузка
+            </small>
+
+        </div>
+
+
+        <div class="analytics-summary-card">
+
+            <span>
+                Давление
+            </span>
+
+            <strong id="analytics-average-pressure">
+                5.4 bar
+            </strong>
+
+            <small>
+                рабочее давление
+            </small>
+
+        </div>
+
+
+        <div class="analytics-summary-card">
+
+            <span>
+                Состояние системы
+            </span>
+
+            <strong
+                id="analytics-system-status"
+                class="analytics-status-ok"
+            >
+                НОРМА
+            </strong>
+
+            <small>
+                текущее состояние
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <!-- ГРАФИКИ -->
+
+    <div class="analytics-chart-grid">
+
+        <div class="analytics-panel">
+
+            <div class="analytics-panel-header">
+
+                <div>
+                    <strong>
+                        Температура
+                    </strong>
+
+                    <span>
+                        °C
+                    </span>
+                </div>
+
+                <span id="analytics-temperature-current">
+                    72
+                </span>
+
+            </div>
+
+            <canvas
+                id="analytics-temperature-chart"
+            ></canvas>
+
+        </div>
+
+
+        <div class="analytics-panel">
+
+            <div class="analytics-panel-header">
+
+                <div>
+                    <strong>
+                        Нагрузка
+                    </strong>
+
+                    <span>
+                        %
+                    </span>
+                </div>
+
+                <span id="analytics-load-current">
+                    64
+                </span>
+
+            </div>
+
+            <canvas
+                id="analytics-load-chart"
+            ></canvas>
+
+        </div>
+
+
+        <div class="analytics-panel analytics-panel-wide">
+
+            <div class="analytics-panel-header">
+
+                <div>
+                    <strong>
+                        Давление
+                    </strong>
+
+                    <span>
+                        bar
+                    </span>
+                </div>
+
+                <span id="analytics-pressure-current">
+                    5.4
+                </span>
+
+            </div>
+
+            <canvas
+                id="analytics-pressure-chart"
+            ></canvas>
+
+        </div>
+
+    </div>
+
+
+    <!-- ПОСЛЕДНИЕ СОБЫТИЯ -->
+
+    <div class="analytics-events">
+
+        <div class="panel-title">
+            Последние события
+        </div>
+
+
+        <div class="analytics-event">
+
+            <span class="status-dot green"></span>
+
+            <div>
+
+                <strong>
+                    Система работает стабильно
+                </strong>
+
+                <small>
+                    M-101 · текущий статус
+                </small>
+
+            </div>
+
+            <time>
+                Сейчас
+            </time>
+
+        </div>
+
+
+        <div class="analytics-event">
+
+            <span class="status-dot green"></span>
+
+            <div>
+
+                <strong>
+                    Датчики работают в штатном режиме
+                </strong>
+
+                <small>
+                    Система мониторинга
+                </small>
+
+            </div>
+
+            <time>
+                2 мин назад
+            </time>
+
+        </div>
+
+
+        <div class="analytics-event">
+
+            <span class="status-dot green"></span>
+
+            <div>
+
+                <strong>
+                    Производственная линия активна
+                </strong>
+
+                <small>
+                    Производственный модуль
+                </small>
+
+            </div>
+
+            <time>
+                8 мин назад
+            </time>
+
+        </div>
+
+    </div>
+
+</section>
+
+    <!-- =================================================
+         СВОДНЫЕ ПОКАЗАТЕЛИ
+    ================================================== -->
+
+    <div class="analytics-summary">
+
+        <div class="analytics-summary-card">
+
+            <span>
+                Средняя температура
+            </span>
+
+            <strong id="analytics-average-temperature">
+                72 °C
+            </strong>
+
+            <small>
+                текущее значение
+            </small>
+
+        </div>
+
+
+        <div class="analytics-summary-card">
+
+            <span>
+                Средняя нагрузка
+            </span>
+
+            <strong id="analytics-average-load">
+                64 %
+            </strong>
+
+            <small>
+                производственная нагрузка
+            </small>
+
+        </div>
+
+
+        <div class="analytics-summary-card">
+
+            <span>
+                Давление
+            </span>
+
+            <strong id="analytics-average-pressure">
+                5.4 bar
+            </strong>
+
+            <small>
+                рабочее давление
+            </small>
+
+        </div>
+
+
+        <div class="analytics-summary-card">
+
+            <span>
+                Состояние системы
+            </span>
+
+            <strong
+                id="analytics-system-status"
+                class="analytics-status-ok"
+            >
+                НОРМА
+            </strong>
+
+            <small>
+                текущее состояние
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         ГРАФИКИ
+    ================================================== -->
+
+    <div class="analytics-chart-grid">
+
+
+        <div class="analytics-panel">
+
+            <div class="analytics-panel-header">
+
+                <div>
+
+                    <strong>
+                        Температура
+                    </strong>
+
+                    <span>
+                        °C
+                    </span>
+
+                </div>
+
+                <span id="analytics-temperature-current">
+                    72
+                </span>
+
+            </div>
+
+
+            <canvas
+                id="analytics-temperature-chart"
+            ></canvas>
+
+        </div>
+
+
+
+        <div class="analytics-panel">
+
+            <div class="analytics-panel-header">
+
+                <div>
+
+                    <strong>
+                        Нагрузка
+                    </strong>
+
+                    <span>
+                        %
+                    </span>
+
+                </div>
+
+                <span id="analytics-load-current">
+                    64
+                </span>
+
+            </div>
+
+
+            <canvas
+                id="analytics-load-chart"
+            ></canvas>
+
+        </div>
+
+
+
+        <div class="analytics-panel analytics-panel-wide">
+
+            <div class="analytics-panel-header">
+
+                <div>
+
+                    <strong>
+                        Давление
+                    </strong>
+
+                    <span>
+                        bar
+                    </span>
+
+                </div>
+
+                <span id="analytics-pressure-current">
+                    5.4
+                </span>
+
+            </div>
+
+
+            <canvas
+                id="analytics-pressure-chart"
+            ></canvas>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         СОБЫТИЯ
+    ================================================== -->
+
+    <div class="analytics-events">
+
+        <div class="panel-title">
+            Последние события
+        </div>
+
+
+        <div class="analytics-event">
+
+            <span class="status-dot green"></span>
+
+            <div>
+
+                <strong>
+                    Система работает стабильно
+                </strong>
+
+                <small>
+                    M-101 · текущий статус
+                </small>
+
+            </div>
+
+            <time>
+                Сейчас
+            </time>
+
+        </div>
+
+
+        <div class="analytics-event">
+
+            <span class="status-dot green"></span>
+
+            <div>
+
+                <strong>
+                    Датчики работают в штатном режиме
+                </strong>
+
+                <small>
+                    Система мониторинга
+                </small>
+
+            </div>
+
+            <time>
+                2 мин назад
+            </time>
+
+        </div>
+
+
+        <div class="analytics-event">
+
+            <span class="status-dot green"></span>
+
+            <div>
+
+                <strong>
+                    Производственная линия активна
+                </strong>
+
+                <small>
+                    Производственный модуль
+                </small>
+
+            </div>
+
+            <time>
+                8 мин назад
+            </time>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+            <!-- МОНИТОРИНГ -->
+
+            <section class="monitoring-grid">
+
+
+                <article class="monitor-card">
+
+                    <div class="monitor-header">
+
+                        <div>
+
+                            <span class="small-label">
+                                ТЕМПЕРАТУРА
+                            </span>
+
+                            <h3>
+                                Температура оборудования
+                            </h3>
+
+                        </div>
+
+                        <span class="monitor-live">
+                            LIVE
+                        </span>
+
+                    </div>
+
+
+                    <div class="temperature-value">
+
+                        <strong id="temperature-value">
+                            72
+                        </strong>
+
+                        <span>
+                            °C
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+
+                <article class="monitor-card">
+
+                    <div class="monitor-header">
+
+                        <div>
+
+                            <span class="small-label">
+                                НАГРУЗКА
+                            </span>
+
+                            <h3>
+                                Производственная нагрузка
+                            </h3>
+
+                        </div>
+
+                        <span class="monitor-live">
+                            АКТИВНА
+                        </span>
+
+                    </div>
+
+
+                    <div class="load-value">
+
+                        <strong id="load-value">
+                            84.7%
+                        </strong>
+
+
+                        <div class="load-bar">
+
+                            <div
+                                id="load-progress"
+                                class="load-progress"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <p>
+                        Текущая производственная мощность
+                    </p>
+
+                </article>
+
+
+
+                <article class="monitor-card">
+
+                    <div class="monitor-header">
+
+                        <div>
+
+                            <span class="small-label">
+                                ДАТЧИКИ
+                            </span>
+
+                            <h3>
+                                Сеть мониторинга
+                            </h3>
+
+                        </div>
+
+                        <span class="monitor-live">
+                            ОНЛАЙН
+                        </span>
+
+                    </div>
+
+
+                    <div class="sensor-value">
+
+                        <strong>
+                            128
+                        </strong>
+
+                        <span>
+                            подключённых датчиков
+                        </span>
+
+                    </div>
+
+
+                    <div class="sensor-status">
+
+                        <span>
+                            ● 124 НОРМА
+                        </span>
+
+                        <span>
+                            ● 4 ПРЕДУПРЕЖДЕНИЯ
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+
+                <article class="monitor-card alerts-card">
+
+                    <div class="monitor-header">
+
+                        <div>
+
+                            <span class="small-label">
+                                ОПОВЕЩЕНИЯ
+                            </span>
+
+                            <h3>
+                                Системные уведомления
+                            </h3>
+
+                        </div>
+
+                        <span class="alert-count">
+                            2
+                        </span>
+
+                    </div>
+
+
+                    <div class="alert-item">
+
+                        <span class="alert-indicator warning"></span>
+
+                        <div>
+
+                            <strong>
+                                Резервуар P-302
+                            </strong>
+
+                            <p>
+                                Давление приближается к пороговому значению
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="alert-item">
+
+                        <span class="alert-indicator info"></span>
+
+                        <div>
+
+                            <strong>
+                                Модуль C-204
+                            </strong>
+
+                            <p>
+                                Запланировано техническое обслуживание
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             РАЗДЕЛ: ОБОРУДОВАНИЕ
+        ====================================================== -->
+
+        <section
+            id="section-equipment"
+            class="content-section"
+        >
+
+            <div class="page-card">
+
+                <span class="small-label">
+                    ОБОРУДОВАНИЕ
+                </span>
+
+                <h2>
+                    Мониторинг оборудования
+                </h2>
+
+                <p class="section-description">
+                    Состояние основных производственных узлов.
+                </p>
+
+
+                <div class="equipment-grid">
+
+
+                    <article class="equipment-card">
+
+                        <div class="equipment-status online">
+                            РАБОТАЕТ
+                        </div>
+
+                        <span class="equipment-type">
+                            ПРОИЗВОДСТВЕННЫЙ БЛОК
+                        </span>
+
+                        <h3>
+                            M-101
+                        </h3>
+
+                        <div class="equipment-data">
+
+                            <span>
+                                Температура
+                            </span>
+
+                            <strong>
+                                72 °C
+                            </strong>
+
+                        </div>
+
+                        <div class="equipment-data">
+
+                            <span>
+                                Эффективность
+                            </span>
+
+                            <strong>
+                                94.7%
+                            </strong>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <article class="equipment-card">
+
+                        <div class="equipment-status online">
+                            АКТИВЕН
+                        </div>
+
+                        <span class="equipment-type">
+                            ОХЛАЖДАЮЩИЙ МОДУЛЬ
+                        </span>
+
+                        <h3>
+                            C-204
+                        </h3>
+
+                        <div class="equipment-data">
+
+                            <span>
+                                Температура
+                            </span>
+
+                            <strong>
+                                24 °C
+                            </strong>
+
+                        </div>
+
+                        <div class="equipment-data">
+
+                            <span>
+                                Эффективность
+                            </span>
+
+                            <strong>
+                                91.2%
+                            </strong>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <article class="equipment-card warning-card">
+
+                        <div class="equipment-status warning">
+                            ВНИМАНИЕ
+                        </div>
+
+                        <span class="equipment-type">
+                            РЕЗЕРВУАР ВЫСОКОГО ДАВЛЕНИЯ
+                        </span>
+
+                        <h3>
+                            P-302
+                        </h3>
+
+                        <div class="equipment-data">
+
+                            <span>
+                                Температура
+                            </span>
+
+                            <strong>
+                                84 °C
+                            </strong>
+
+                        </div>
+
+                        <div class="equipment-data">
+
+                            <span>
+                                Давление
+                            </span>
+
+                            <strong>
+                                8.4 МПа
+                            </strong>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             РАЗДЕЛ: ДАТЧИКИ
+        ====================================================== -->
+
+       <section id="section-sensors" class="content-section">
+
+    <div class="section-header">
+        <div>
+            <h2>Мониторинг датчиков</h2>
+            <p>Текущее состояние измерительных систем оборудования</p>
+        </div>
+
+        <div class="sensor-status-summary">
+            <span class="status-dot green"></span>
+            Система мониторинга активна
+        </div>
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- ОСНОВНЫЕ ПОКАЗАТЕЛИ -->
+    <!-- ================================================= -->
+
+    <div class="sensor-grid">
+
+        <div class="sensor-card">
+
+            <div class="sensor-card-top">
+                <span>🌡</span>
+                <span class="sensor-state normal"
+                      id="temperature-state">
+                    НОРМА
+                </span>
+            </div>
+
+            <div class="sensor-name">
+                Температура
+            </div>
+
+            <div class="sensor-value">
+                <span id="sensor-temperature">
+                    72
+                </span>
+                <small>°C</small>
+            </div>
+
+            <div class="sensor-range">
+                Норма: 40–85 °C
+            </div>
+
+        </div>
+
+
+        <div class="sensor-card">
+
+            <div class="sensor-card-top">
+                <span>◉</span>
+                <span class="sensor-state normal"
+                      id="pressure-state">
+                    НОРМА
+                </span>
+            </div>
+
+            <div class="sensor-name">
+                Давление
+            </div>
+
+            <div class="sensor-value">
+                <span id="sensor-pressure">
+                    5.4
+                </span>
+                <small>bar</small>
+            </div>
+
+            <div class="sensor-range">
+                Норма: 4.8–6.0 bar
+            </div>
+
+        </div>
+
+
+        <div class="sensor-card">
+
+            <div class="sensor-card-top">
+                <span>⚙</span>
+                <span class="sensor-state normal"
+                      id="load-state">
+                    НОРМА
+                </span>
+            </div>
+
+            <div class="sensor-name">
+                Нагрузка
+            </div>
+
+            <div class="sensor-value">
+                <span id="sensor-load">
+                    64
+                </span>
+                <small>%</small>
+            </div>
+
+            <div class="sensor-range">
+                Норма: до 70%
+            </div>
+
+        </div>
+
+
+        <div class="sensor-card">
+
+            <div class="sensor-card-top">
+                <span>〽</span>
+                <span class="sensor-state normal"
+                      id="vibration-state">
+                    НОРМА
+                </span>
+            </div>
+
+            <div class="sensor-name">
+                Вибрация
+            </div>
+
+            <div class="sensor-value">
+                <span id="sensor-vibration">
+                    2.1
+                </span>
+                <small>mm/s</small>
+            </div>
+
+            <div class="sensor-range">
+                Норма: до 4.5 mm/s
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- СОСТОЯНИЕ ДАТЧИКОВ -->
+    <!-- ================================================= -->
+
+    <div class="sensor-monitor-panel">
+
+        <div class="panel-title">
+            Состояние измерительных каналов
+        </div>
+
+        <div class="sensor-row">
+
+            <div class="sensor-row-name">
+                <span class="status-dot green"></span>
+                M-101 / Температура
+            </div>
+
+            <div class="sensor-bar">
+                <div
+                    class="sensor-bar-fill"
+                    id="temperature-bar"
+                    style="width:72%">
+                </div>
+            </div>
+
+            <div id="temperature-channel">
+                Активен
+            </div>
+
+        </div>
+
+
+        <div class="sensor-row">
+
+            <div class="sensor-row-name">
+                <span class="status-dot green"></span>
+                M-101 / Нагрузка
+            </div>
+
+            <div class="sensor-bar">
+                <div
+                    class="sensor-bar-fill"
+                    id="load-bar"
+                    style="width:64%">
+                </div>
+            </div>
+
+            <div id="load-channel">
+                Активен
+            </div>
+
+        </div>
+
+
+        <div class="sensor-row">
+
+            <div class="sensor-row-name">
+                <span class="status-dot green"></span>
+                P-302 / Давление
+            </div>
+
+            <div class="sensor-bar">
+                <div
+                    class="sensor-bar-fill"
+                    id="pressure-bar"
+                    style="width:54%">
+                </div>
+            </div>
+
+            <div id="pressure-channel">
+                Активен
+            </div>
+
+        </div>
+
+
+        <div class="sensor-row">
+
+            <div class="sensor-row-name">
+                <span class="status-dot green"></span>
+                M-101 / Вибрация
+            </div>
+
+            <div class="sensor-bar">
+                <div
+                    class="sensor-bar-fill"
+                    id="vibration-bar"
+                    style="width:42%">
+                </div>
+            </div>
+
+            <div id="vibration-channel">
+                Активен
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- СТАТИСТИКА -->
+    <!-- ================================================= -->
+
+    <div class="sensor-footer">
+
+        <div>
+            <strong>128</strong>
+            <span>Всего датчиков</span>
+        </div>
+
+        <div>
+            <strong id="normal-sensors">
+                124
+            </strong>
+            <span>Норма</span>
+        </div>
+
+        <div>
+            <strong id="warning-sensors">
+                4
+            </strong>
+            <span>Предупреждения</span>
+        </div>
+
+        <div>
+            <strong>0</strong>
+            <span>Критических</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+        <!-- =====================================================
+             РАЗДЕЛ: ПРОИЗВОДСТВО
+        ====================================================== -->
+
+        
+        <section id="section-production" class="content-section">
+
+    <div class="section-header">
+        <div>
+            <h2>Производство</h2>
+            <p>Текущее состояние производственного процесса</p>
+        </div>
+
+        <div class="sensor-status-summary">
+            <span class="status-dot green"></span>
+            Линия работает
+        </div>
+    </div>
+
+
+    <!-- ОСНОВНЫЕ ПОКАЗАТЕЛИ -->
+
+    <div class="production-grid">
+
+        <div class="production-card">
+
+            <div class="production-card-header">
+                <span>Загрузка оборудования</span>
+                <span id="production-load-status">
+                    НОРМА
+                </span>
+            </div>
+
+            <div class="production-value">
+                <span id="production-load">
+                    64
+                </span>
+                <small>%</small>
+            </div>
+
+            <div class="production-progress">
+                <div
+                    id="production-load-bar"
+                    style="width:64%">
+                </div>
+            </div>
+
+            <div class="production-description">
+                Текущая загрузка производственной линии
+            </div>
+
+        </div>
+
+
+        <div class="production-card">
+
+            <div class="production-card-header">
+                <span>Эффективность</span>
+                <span class="production-ok">
+                    СТАБИЛЬНО
+                </span>
+            </div>
+
+            <div class="production-value">
+                <span id="production-efficiency">
+                    92
+                </span>
+                <small>%</small>
+            </div>
+
+            <div class="production-progress">
+                <div
+                    id="production-efficiency-bar"
+                    style="width:92%">
+                </div>
+            </div>
+
+            <div class="production-description">
+                Эффективность работы оборудования
+            </div>
+
+        </div>
+
+
+        <div class="production-card">
+
+            <div class="production-card-header">
+                <span>Время работы</span>
+                <span class="production-ok">
+                    ONLINE
+                </span>
+            </div>
+
+            <div class="production-value">
+                <span id="production-hours">
+                    18:42
+                </span>
+            </div>
+
+            <div class="production-description">
+                Непрерывная работа производственной линии
+            </div>
+
+        </div>
+
+
+        <div class="production-card">
+
+            <div class="production-card-header">
+                <span>Простой</span>
+                <span id="production-downtime-status">
+                    НОРМА
+                </span>
+            </div>
+
+            <div class="production-value">
+                <span id="production-downtime">
+                    01:18
+                </span>
+            </div>
+
+            <div class="production-description">
+                Суммарное время простоя оборудования
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- СОСТОЯНИЕ ЛИНИИ -->
+
+    <div class="production-panel">
+
+        <div class="panel-title">
+            Состояние производственной линии
+        </div>
+
+        <div class="production-line">
+
+            <div class="production-stage active">
+                <div class="production-stage-dot"></div>
+                <strong>Подача</strong>
+                <span>Активна</span>
+            </div>
+
+            <div class="production-connector"></div>
+
+            <div class="production-stage active">
+                <div class="production-stage-dot"></div>
+                <strong>Обработка</strong>
+                <span>Активна</span>
+            </div>
+
+            <div class="production-connector"></div>
+
+            <div class="production-stage active">
+                <div class="production-stage-dot"></div>
+                <strong>Контроль</strong>
+                <span>Активна</span>
+            </div>
+
+            <div class="production-connector"></div>
+
+            <div class="production-stage active">
+                <div class="production-stage-dot"></div>
+                <strong>Выход</strong>
+                <span>Активна</span>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ПРОИЗВОДСТВЕННЫЕ ПОКАЗАТЕЛИ -->
+
+    <div class="production-stats">
+
+        <div>
+            <span>План</span>
+            <strong>1 240 ед.</strong>
+        </div>
+
+        <div>
+            <span>Произведено</span>
+            <strong id="production-completed">
+                986 ед.
+            </strong>
+        </div>
+
+        <div>
+            <span>Осталось</span>
+            <strong id="production-remaining">
+                254 ед.
+            </strong>
+        </div>
+
+        <div>
+            <span>Онлайн-оборудование</span>
+            <strong>
+                3 / 3
+            </strong>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+        <!-- =====================================================
+             РАЗДЕЛ: АНАЛИТИКА
+        ====================================================== -->
+
+        <section
+            id="section-analytics"
+            class="content-section"
+        >
+
+            <div class="page-card">
+
+                <span class="small-label">
+                    АНАЛИТИКА
+                </span>
+
+                <h2>
+                    Аналитика производства
+                </h2>
+
+                <p class="section-description">
+                    Анализ температуры и производственной нагрузки в реальном времени.
+                </p>
+
+
+                <div class="analytics-page-chart">
+
+                    <canvas
+                        id="analytics-chart"
+                    ></canvas>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+
+<!-- =========================
+     JAVASCRIPT
+========================== -->
+
+<script
+    type="module"
+    src="./js/main.js"
+></script>
+
+
+</body>
+</html>
